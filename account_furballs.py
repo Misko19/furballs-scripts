@@ -18,11 +18,6 @@ query = """ query {
                     name
                 }
             }
-            inventory {
-                items {
-                    id
-                }
-            }
         }
     }
 }"""
@@ -30,7 +25,7 @@ query = """ query {
 
 r = requests.post(url, json={'query': query})
 print(r.status_code)
-print(r.text)
+#print(r.text)
 
 json_data = json.loads(r.text)
 
