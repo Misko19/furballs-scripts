@@ -5,15 +5,17 @@ import pandas as pd
 url = "https://furballs.com/api/graphql/"
 
 query = """ query {
-    bossBattles {
-        nodes {
-            id
-            playerId
+    player(query: "0x0277BcdE037e0B17e153A96a08C8DA79d93B708D") {
+        ... on FurAccount {
+            inventory {
+                totalDustCount
+            }
         }
-        pageInfo {
-            hasNextPage
+        ... on FurPlayer {
+            inventory {
+                totalDustCount
+            }
         }
-        totalCount
     }
 }"""
 
@@ -24,7 +26,8 @@ print(r.text)
 
 json_data = json.loads(r.text)
 
-df_data = json_data['data']['bossBattles']['nodes']
-df = pd.DataFrame(df_data)
+print(json.dumps(json_data, indent=4))
 
-print(df)
+#df_data = json_data['data']['bossBattles']['nodes']
+#df = pd.DataFrame(df_data)
+#print(df)
