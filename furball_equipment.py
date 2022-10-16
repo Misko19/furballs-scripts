@@ -3,9 +3,11 @@ import json
 import pandas as pd
 
 url = "https://furballs.com/api/graphql/"
+furball_id = "0x010101010900070b04070e00"
+furball_id = "0x0508050f060007060b051a00"
 
-query = """ query {
-    furball(tokenId: "0x050809060900090408080700") {
+query = """ query getFurballEquipment($id:String!) {
+    furball(tokenId:$id) {
         id
         name
         level
@@ -13,9 +15,8 @@ query = """ query {
         skillRollCost
         skillUpgradesAvailable
         equipment {
-            definition {
-                name
-            }
+            name
+            rarity
             equippedBy {
                 id
                 socialName
@@ -24,9 +25,10 @@ query = """ query {
     }
 }"""
 
-r = requests.post(url, json={'query': query})
+variables = {'id': furball_id}
+r = requests.post(url, json={'query': query, 'variables': variables})
 # print(r.status_code)
-# print(r.text)
+print(r.text)
 
 json_data = json.loads(r.text)
 

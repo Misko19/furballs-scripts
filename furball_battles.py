@@ -1,91 +1,102 @@
 import requests
 import json
 import pandas as pd
+import datetime as dt
 
 url = "https://furballs.com/api/graphql/"
-token_id = "3405553534359963827058116864"
-hex_id = "0x0b010203060009050b020900"
 
-#query = """ query {
-#   findFurball(query: "Furball #991") {
-#       id
-#       name
-#       bossBattleCount
-#       number
-#   }
-#}"""
-#
-#r = requests.post(url, json={'query': query})
-#print(r.status_code)
-#print(r.text)
-#exit()
+furball_num = 702
 
-# activeHost {
-#    name
-# }
-# lastAt
-# isComplete
-# score
-
-query = """ query latestBossBattles($last: Int!)
-{
-    bossBattles(last:$last order:{createdAt: ASC}) {
+query = """ query furballByNumber($num: Int!) {
+    searchFurballs(filters: {number: $num}) {
         nodes {
-            playerId
-            player {
-                ... on FurAccount {
-                    username
-                }
-            }
-            score
-            furballIds
-            isTrialGame
-            createdAt
-            worldBoss {
-                name
-            }
-        }
-        totalCount
-        pageInfo {
-            startCursor
-            hasNextPage
-            endCursor
+            id
+            name
+            number
+            bossBattleCount
         }
     }
 }"""
 
-variables = {'last': 100}
-after = ""
+variables = {'num': furball_num}
 
-r = requests.post(
-    url, json={'query': query, 'variables': variables})
-print(r.status_code)
-#print(r.text)
-
+r = requests.post(url, json={'query': query, 'variables': variables})
 json_data = json.loads(r.text)
+furball_id = json_data['data']['searchFurballs']['nodes'][0]['id']
+print(furball_id)
 
-print(json_data['data']['bossBattles']['pageInfo'])
-
-df_data = json_data['data']['bossBattles']['nodes']
-#df_data = json_data['data']['furball']
-df = pd.DataFrame(df_data)
-
-#print(df)
+date = dt.datetime.utcnow() - dt.timedelta(weeks=1)
+date_iso = date.isoformat()
 
 furball_battles = []
-for battle in json_data['data']['bossBattles']['nodes']:
-    if battle['isTrialGame']:
-        continue
-    for furball_id in battle['furballIds']:
-        if furball_id == hex_id:
+has_next_page = True
+after_cursor = None
+while(has_next_page):
+    query = """ query latestBossBattles($date:DateTime! $after_cursor:String)
+    {
+        bossBattles(where:{createdAt: {gte: $date}} order:{createdAt: DESC} after:$after_cursor first:100) {
+            nodes {
+                playerId
+                player {
+                    ... on FurAccount {
+                        username
+                    }
+                }
+                score
+                furballIds
+                isTrialGame
+                createdAt
+                percentileRank
+                furEarned
+                worldBoss {
+                    name
+                }
+            }
+            totalCount
+            pageInfo {
+                startCursor
+                hasNextPage
+                endCursor
+            }
+        }
+    }"""
+
+    print(after_cursor)
+    #variables = {'after': cursor, 'date': date_iso}
+    variables = {'date': date_iso, 'after_cursor': after_cursor}
+
+    r = requests.post(
+        url, json={'query': query, 'variables': variables})
+    # print(r.status_code)
+    # print(r.text)
+    json_data = json.loads(r.text)
+
+    has_next_page = json_data['data']['bossBattles']['pageInfo']['hasNextPage']
+    after_cursor = json_data['data']['bossBattles']['pageInfo']['endCursor']
+
+    print(json_data['data']['bossBattles']['pageInfo'])
+    print(json_data['data']['bossBattles']['totalCount'])
+
+    battles = json_data['data']['bossBattles']['nodes']
+    #df = pd.DataFrame(battles)
+    # print(df)
+
+    for battle in battles:
+        if battle['isTrialGame']:
+            continue
+        if furball_id in battle['furballIds']:
             battle_info = {
                 "playerId": battle['playerId'],
                 "playerName": battle['player']['username'],
-                "boss" : battle['worldBoss']['name'],
+                "boss": battle['worldBoss']['name'],
                 "partySize": len(battle['furballIds']),
-                "createdAt": battle['createdAt'],
+                # "createdAt": battle['createdAt'],
                 "score": battle['score'],
+                "rank": battle['percentileRank'],
+                "fur": battle['furEarned']
             }
-            furball_battles.append(battle_info) 
+            furball_battles.append(battle_info)
 
-print(json.dumps(furball_battles, indent=4))
+df_battles = pd.DataFrame(furball_battles)
+print(df_battles)
+#print(json.dumps(furball_battles, indent=4))

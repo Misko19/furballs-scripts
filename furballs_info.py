@@ -30,4 +30,4 @@ print(json.dumps(json_data, indent=4))
 
 #df_data = json_data['data']['bossBattles']['nodes']
 #df = pd.DataFrame(df_data)
-#print(df)
+# print(df)
