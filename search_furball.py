@@ -3,7 +3,7 @@ import json
 import pandas as pd
 
 url = "https://furballs.com/api/graphql/"
-furball_num = 4853
+furball_num = 6160
 
 query = """ query furballByNumber($num: Int!) {
     searchFurballs(filters: {number: $num}) {
