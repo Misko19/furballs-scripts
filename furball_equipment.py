@@ -8,8 +8,8 @@ furball_id = "0x0508050f060007060b051a00"
 furball_id = "0x080503100700030b06000a00"
 furball_id = "0x8090a030300010507021300"
 
-query = """ query getFurballEquipment($id:String!) {
-    furball(tokenId:$id) {
+query = """ query {
+    furball(tokenId: "0x050809060900090408080700") {
         id
         name
         level
@@ -20,8 +20,9 @@ query = """ query getFurballEquipment($id:String!) {
             username
         }
         equipment {
-            name
-            rarity
+            definition {
+                name
+            }
             equippedBy {
                 id
                 socialName
@@ -30,10 +31,9 @@ query = """ query getFurballEquipment($id:String!) {
     }
 }"""
 
-variables = {'id': furball_id}
-r = requests.post(url, json={'query': query, 'variables': variables})
+r = requests.post(url, json={'query': query})
 # print(r.status_code)
-print(r.text)
+# print(r.text)
 
 json_data = json.loads(r.text)
 
