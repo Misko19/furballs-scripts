@@ -6,7 +6,7 @@ import datetime as dt
 
 url = "https://furballs.com/api/graphql/"
 
-furball_num = 1836
+furball_num = 6923
 
 query = """ query furballByNumber($num: Int!) {
     searchFurballs(filters: {number: $num}) {
@@ -16,6 +16,9 @@ query = """ query furballByNumber($num: Int!) {
             name
             number
             bossBattleCount
+            owner {
+                username
+            }
             activeRentalAgreement {
                 wFurEarned
             }
@@ -28,4 +31,4 @@ variables = {'num': furball_num}
 r = requests.post(url, json={'query': query, 'variables': variables})
 json_data = json.loads(r.text)
 furball_id = json_data['data']['searchFurballs']['nodes'][0]['id']
-print(furball_id)
+print(json_data)

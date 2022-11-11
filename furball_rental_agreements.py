@@ -3,12 +3,28 @@ import json
 import pandas as pd
 
 url = "https://furballs.com/api/graphql/"
-furball_id = "0x010101010900070b04070e00"
-furball_id = "0x0508050f060007060b051a00"
-furball_id = "0x080503100700030b06000a00"
-furball_id = "0x8090a030300010507021300"
+furball_num = 3918
 
-query = """ query getFurballEquipment($id:String!) {
+query = """ query furballByNumber($num: Int!) {
+    searchFurballs(filters: {number: $num}) {
+        nodes {
+            id
+            tokenId
+            name
+            number
+        }
+    }
+}"""
+
+
+variables = {'num': furball_num}
+
+r = requests.post(url, json={'query': query, 'variables': variables})
+
+json_data = json.loads(r.text)
+furball_token_id = json_data['data']['searchFurballs']['nodes'][0]['tokenId']
+
+query = """ query getFurballSkills($id:String!) {
     furball(tokenId:$id) {
         id
         name
@@ -19,18 +35,20 @@ query = """ query getFurballEquipment($id:String!) {
         owner {
             username
         }
-        equipment {
-            name
-            rarity
-            equippedBy {
+        rentalAgreements {
+            id
+            isActive
+            autoRenew
+            duration
+            player {
                 id
-                socialName
+                name
             }
         }
     }
 }"""
 
-variables = {'id': furball_id}
+variables = {'id': furball_token_id}
 r = requests.post(url, json={'query': query, 'variables': variables})
 # print(r.status_code)
 print(r.text)

@@ -1,0 +1,101 @@
+    player_name    boss  party_size   score    norm_score
+0     0x3b...dd  Trashy           3  276609  92203.000000
+1     0x3b...dd  Trashy           3  269104  89701.333333
+2         Misko  Trashy           3  257047  85682.333333
+3     0x3b...dd  Trashy           3  253118  84372.666667
+4     0x3b...dd  Trashy           3  250735  83578.333333
+5        nujiel  Trashy           3  245247  81749.000000
+6     0x3b...dd  Trashy           3  245092  81697.333333
+7        nujiel  Trashy           3  242719  80906.333333
+8     0x3b...dd  Trashy           3  234184  78061.333333
+9     0x3b...dd  Trashy           3  231510  77170.000000
+10    0x3b...dd  Trashy           3  217030  72343.333333
+11        Misko  Trashy           5  341274  68254.800000
+12       nujiel  Trashy           3  203705  67901.666667
+13       slabba  Trashy           3  203653  67884.333333
+14    0x3b...dd  Trashy           3  203361  67787.000000
+15          s o  Trashy           5  336429  67285.800000
+16       slabba  Trashy           3  200923  66974.333333
+17      xiskool  Trashy           3  200822  66940.666667
+18        Misko  Trashy           5  323546  64709.200000
+19       slabba  Trashy           3  192742  64247.333333
+20        Misko  Trashy           5  319589  63917.800000
+21       slabba  Trashy           3  190859  63619.666667
+22        Misko  Trashy           5  317967  63593.400000
+23        Misko  Trashy           5  315792  63158.400000
+24        Misko  Trashy           5  303239  60647.800000
+25        Misko  Trashy           5  299709  59941.800000
+26       slabba  Trashy           3  178238  59412.666667
+27        Misko  Trashy           5  296786  59357.200000
+28        Misko  Trashy           5  291447  58289.400000
+29        Misko  Trashy           5  291366  58273.200000
+30        Misko  Trashy           5  289216  57843.200000
+31        Misko  Trashy           5  288697  57739.400000
+32        Misko  Trashy           5  286472  57294.400000
+33       slabba  Trashy           3  169811  56603.666667
+34          s o  Trashy           5  281071  56214.200000
+35          s o  Trashy           5  279894  55978.800000
+36          s o  Trashy           3  167390  55796.666667
+37        Misko  Trashy           5  278892  55778.400000
+38          s o  Trashy           5  278083  55616.600000
+39        Misko  Trashy           5  276148  55229.600000
+40       slabba  Trashy           3  165476  55158.666667
+41       slabba  Trashy           3  164829  54943.000000
+42          s o  Trashy           5  273415  54683.000000
+43       slabba  Trashy           3  163611  54537.000000
+44        Misko  Trashy           5  272435  54487.000000
+45        Misko  Trashy           5  271283  54256.600000
+46        Misko  Trashy           5  270394  54078.800000
+47        Misko  Trashy           5  270103  54020.600000
+48          s o  Trashy           5  268879  53775.800000
+49        Misko  Trashy           5  268713  53742.600000
+50          s o  Trashy           5  267295  53459.000000
+51        Misko  Trashy           5  267153  53430.600000
+52        Misko  Trashy           5  266763  53352.600000
+53        Misko  Trashy           5  266517  53303.400000
+54        Misko  Trashy           5  265252  53050.400000
+55        Misko  Trashy           5  263671  52734.200000
+56      xiskool  Trashy           5  261880  52376.000000
+57          s o  Trashy           5  259324  51864.800000
+58      xiskool  Trashy           5  258737  51747.400000
+59          s o  Trashy           5  258589  51717.800000
+60       slabba  Trashy           3  154181  51393.666667
+61  AniMechanic  Trashy           5  256821  51364.200000
+62        Misko  Trashy           5  255277  51055.400000
+63        Misko  Trashy           5  254945  50989.000000
+64      xiskool  Trashy           5  254649  50929.800000
+65  AniMechanic  Trashy           5  254342  50868.400000
+66          s o  Trashy           5  254224  50844.800000
+67          s o  Trashy           5  254187  50837.400000
+68        Misko  Trashy           5  254167  50833.400000
+69        Misko  Trashy           5  252520  50504.000000
+70  AniMechanic  Trashy           5  252173  50434.600000
+71      xiskool  Trashy           5  251662  50332.400000
+72  AniMechanic  Trashy           5  250978  50195.600000
+73          Mao  Trashy           5  250796  50159.200000
+74       slabba  Trashy           3  150334  50111.333333
+75          s o  Trashy           5  250258  50051.600000
+76      xiskool  Trashy           5  248659  49731.800000
+77        Misko  Trashy           5  248246  49649.200000
+78      xiskool  Trashy           5  246606  49321.200000
+79          s o  Trashy           5  246067  49213.400000
+80        Misko  Trashy           5  244476  48895.200000
+81          s o  Trashy           5  244417  48883.400000
+82  AniMechanic  Trashy           5  244012  48802.400000
+83       slabba  Trashy           3  146129  48709.666667
+84          s o  Trashy           5  241702  48340.400000
+85      xiskool  Trashy           5  241594  48318.800000
+86      xiskool  Trashy           5  241211  48242.200000
+87      xiskool  Trashy           5  240481  48096.200000
+88       slabba  Trashy           3  143222  47740.666667
+89       slabba  Trashy           3  142626  47542.000000
+90          s o  Trashy           5  236389  47277.800000
+91  AniMechanic  Trashy           5  236013  47202.600000
+92          s o  Trashy           3  140839  46946.333333
+93  AniMechanic  Trashy           5  234609  46921.800000
+94          s o  Trashy           5  234216  46843.200000
+95      xiskool  Trashy           5  232428  46485.600000
+96          Mao  Trashy           5  230886  46177.200000
+97       slabba  Trashy           3  138278  46092.666667
+98      xiskool  Trashy           5  230283  46056.600000
+99          Mao  Trashy           5  229996  45999.200000
