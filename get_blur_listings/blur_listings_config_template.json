@@ -1,0 +1,8 @@
+{
+    "mm_url": "<URL to open MetaMask Extension in Browser Tab>",
+    "mm_pass": "<MetaMask Password>",
+    "ff_profile_path": "<Path to Firefox Profile with MetaMask Installed>",
+    "blur_polling_freq_min": 5,
+    "furballs_info_url": "",
+    "furballs_info_api_key": ""
+}
