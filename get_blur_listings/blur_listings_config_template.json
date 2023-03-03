@@ -4,5 +4,6 @@
     "ff_profile_path": "<Path to Firefox Profile with MetaMask Installed>",
     "blur_polling_freq_min": 5,
     "furballs_info_url": "",
-    "furballs_info_api_key": ""
+    "furballs_info_api_key": "",
+    "headless": true
 }

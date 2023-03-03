@@ -26,6 +26,7 @@ mm_pass = ""
 polling_freq_min = 5
 furballs_info_url = ""
 furballs_info_api_key = ""
+headless_firefox = False
 
 
 ################################################################################
@@ -43,12 +44,13 @@ def main():
     sleep(5)
     print("Open blur.io...")
     driver.get(f"{blur_url}collections")
-    sleep(3)
+    sleep(5)
     try:
         print("Connect Wallet to blur.io...")
-        driver.find_element(
-            By.XPATH, '//button[text()="Connect Wallet"]').click()
-    except Exception:
+        driver.find_element(By.XPATH, '//button//*[contains(text(), "connect wallet")]').click()
+        sleep(3)
+        driver.find_element(By.ID, 'METAMASK').click()
+    except Exception as e:
         print("Couldn't find Connect Wallet button.  Might already be connected.")
     while True:
         # Reload config here so that some changes can be made without killing the script.
@@ -227,6 +229,7 @@ def load_config():
     global polling_freq_min
     global furballs_info_url
     global furballs_info_api_key
+    global headless_firefox
     print("Load blur_listings_config.json...")
     with open("blur_listings_config.json", "r") as f:
         config = json.load(f)
@@ -237,6 +240,7 @@ def load_config():
     polling_freq_min = config['blur_polling_freq_min']
     furballs_info_url = config['furballs_info_url']
     furballs_info_api_key = config['furballs_info_api_key']
+    headless_firefox = config['headless']
 
 
 ################################################################################
@@ -248,7 +252,9 @@ def configure_driver():
     options = Options()
     options.add_argument("-profile")
     options.add_argument(ff_profile_path)
-    options.headless = True
+    if headless_firefox:
+        options.add_argument("-headless")
+    #options.headless = headless_firefox
     driver = webdriver.Firefox(options=options)
 
 

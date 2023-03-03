@@ -10,3 +10,5 @@ get_blur_listings/blur_listings_config.json
 get_blur_listings/geckodriver.log
 
 geckodriver.log
+
+*.swp
